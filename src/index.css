@@ -1,0 +1,60 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.lista-produtos {
+  /* usar apenas na guia produtos - incluir via js */
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* Tamanho fixo dos cards */
+  grid-gap: 25px; /* Espaçamento entre os cards */
+}
+
+.produto {
+  width: 250px; /* Largura fixa para os cards */
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  margin: 10px;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.produto > h2 {
+  text-align: center;
+}
+
+.produto > ul {
+  list-style: none;
+  padding: 0;
+  /* margin: 0; */
+}
+
+.produto > ul > li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.produto:hover {
+  border-color: #333;
+}
+
+.botao-simular {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  align-self: flex-end;
+  margin: 0 auto 10px; /* Centralizar horizontalmente e adicionar margem apenas na parte inferior */
+}
+
+.botao-simular:hover {
+  background-color: #555;
+  cursor: pointer;
+}
