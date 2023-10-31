@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 class Produto {
   constructor(id, nome, descricao) {
     this.id = id;
@@ -6,10 +8,12 @@ class Produto {
   }
   criarCard() {
     return (
-      <div className="produto">
-        <h2>{this.nome}</h2>
-        <p>{this.descricao}</p>
-      </div>
+      <Link to={`simular/${this.id}`} key={this.id}>
+        <div className="produto">
+          <h2>{this.nome}</h2>
+          <p>{this.descricao}</p>
+        </div>
+      </Link>
     );
   }
 }
