@@ -1,13 +1,11 @@
-import { Form, useNavigate, useParams } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 
 export default function Simulacao() {
   const navigate = useNavigate();
-  const params = useParams();
-  const action = `/simular/${params.produtoId}/resultado`;
   return (
     <div className="content-simulacao">
       <h2>Simulação de Seguro</h2>
-      <Form method="post" action={action}>
+      <Form method="post">
         <div className="form-group">
           <label htmlFor="data-nascimento">Data de Nascimento</label>
           <input
