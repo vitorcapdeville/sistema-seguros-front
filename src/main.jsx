@@ -7,7 +7,7 @@ import { loader as rootLoader } from "./routes/root.loader";
 import Simulacao from "./routes/simulacao.element";
 import { action as simulacaoAction } from "./routes/simulacao.action";
 import Resultado from "./routes/resultado.element";
-// import { action as resultadoAction } from "./routes/resultado.action";
+import { action as resultadoAction } from "./routes/resultado.action";
 import { loader as resultadoLoader } from "./routes/resultado.loader";
 
 // TODO: Incluir paginas de erro.
@@ -30,7 +30,15 @@ const router = createBrowserRouter([
     path: "/simular/:produtoId/resultado",
     element: <Resultado />,
     loader: resultadoLoader,
-    // action: resultadoAction,
+    action: resultadoAction,
+  },
+  {
+    path: "/contratar/sucesso",
+    element: <div>Contratação realizada com sucesso!</div>,
+  },
+  {
+    path: "/contratar/falha",
+    element: <div>Contratação falhou!</div>,
   },
 ]);
 

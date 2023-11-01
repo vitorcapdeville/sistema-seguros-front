@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Form, useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Resultado() {
@@ -18,29 +18,31 @@ export default function Resultado() {
         nascido em {parametrosSimulacao.dataNascimento} do sexo{" "}
         {parametrosSimulacao.sexo} por {prazo} anos.
       </p>
-      <select id="prazo" name="prazo" onChange={handleChange} value={prazo}>
-        {parametrosSimulacao.prazos.length ? (
-          parametrosSimulacao.prazos.map((prazo) => (
-            <option key={prazo} value={prazo}>
-              {prazo} anos
-            </option>
-          ))
-        ) : (
-          <option>Falha ao buscar os prazos</option>
-        )}
-      </select>
-      <button type="submit" id="contratar" className="botao-simular">
-        Contratar
-      </button>
-      <button
-        type="button"
-        className="botao-simular"
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        Voltar
-      </button>
+      <Form method="post">
+        <select id="prazo" name="prazo" onChange={handleChange} value={prazo}>
+          {parametrosSimulacao.prazos.length ? (
+            parametrosSimulacao.prazos.map((prazo) => (
+              <option key={prazo} value={prazo}>
+                {prazo} anos
+              </option>
+            ))
+          ) : (
+            <option>Falha ao buscar os prazos</option>
+          )}
+        </select>
+        <button type="submit" id="contratar" className="botao-simular">
+          Contratar
+        </button>
+        <button
+          type="button"
+          className="botao-simular"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Voltar
+        </button>
+      </Form>
     </div>
   );
 }
