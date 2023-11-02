@@ -11,6 +11,7 @@ import { loader as resultadoLoader } from "./routes/resultado.loader";
 import { pegarProdutos } from "./produtos";
 import InfoPessoal from "./routes/infopessoal.element";
 import { action as infoPessoalAction } from "./routes/infopessoal.action";
+import Produtos from "./routes/produtos.element";
 
 // TODO: Incluir paginas de erro.
 
@@ -19,31 +20,34 @@ const produtos = await pegarProdutos();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root produtos={produtos} />,
-  },
-  {
-    path: "/simular/:produtoId",
-    element: <Simulacao />,
-    action: simulacaoAction,
-  },
-  {
-    path: "/simular/:produtoId/resultado",
-    element: <Resultado />,
-    loader: resultadoLoader,
-    action: resultadoAction,
-  },
-  {
-    path: "/simular/:produtoId/contratar",
-    element: <InfoPessoal />,
-    action: infoPessoalAction,
-  },
-  {
-    path: "/contratar/sucesso",
-    element: <div>Contratação realizada com sucesso!</div>,
-  },
-  {
-    path: "/contratar/falha",
-    element: <div>Contratação falhou!</div>,
+    element: <Root />,
+    children: [
+      { index: true, element: <Produtos produtos={produtos} /> },
+      {
+        path: "/simular/:produtoId",
+        element: <Simulacao />,
+        action: simulacaoAction,
+      },
+      {
+        path: "/simular/:produtoId/resultado",
+        element: <Resultado />,
+        loader: resultadoLoader,
+        action: resultadoAction,
+      },
+      {
+        path: "/simular/:produtoId/contratar",
+        element: <InfoPessoal />,
+        action: infoPessoalAction,
+      },
+      {
+        path: "/contratar/sucesso",
+        element: <div>Contratação realizada com sucesso!</div>,
+      },
+      {
+        path: "/contratar/falha",
+        element: <div>Contratação falhou!</div>,
+      },
+    ],
   },
 ]);
 
