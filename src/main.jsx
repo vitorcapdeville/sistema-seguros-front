@@ -9,6 +9,8 @@ import Resultado from "./routes/resultado.element";
 import { action as resultadoAction } from "./routes/resultado.action";
 import { loader as resultadoLoader } from "./routes/resultado.loader";
 import { pegarProdutos } from "./produtos";
+import InfoPessoal from "./routes/infopessoal.element";
+import { action as infoPessoalAction } from "./routes/infopessoal.action";
 
 // TODO: Incluir paginas de erro.
 
@@ -29,6 +31,11 @@ const router = createBrowserRouter([
     element: <Resultado />,
     loader: resultadoLoader,
     action: resultadoAction,
+  },
+  {
+    path: "/simular/:produtoId/contratar",
+    element: <InfoPessoal />,
+    action: infoPessoalAction,
   },
   {
     path: "/contratar/sucesso",

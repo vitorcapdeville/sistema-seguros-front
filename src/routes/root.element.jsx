@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
 const Produto = ({ id, nome, descricao }) => {
   return (
@@ -10,11 +9,6 @@ const Produto = ({ id, nome, descricao }) => {
       </div>
     </Link>
   );
-};
-Produto.propTypes = {
-  id: PropTypes.number.isRequired,
-  nome: PropTypes.string.isRequired,
-  descricao: PropTypes.string.isRequired,
 };
 
 export default function Root({ produtos }) {
@@ -40,6 +34,3 @@ export default function Root({ produtos }) {
     </>
   );
 }
-Root.propTypes = {
-  produtos: PropTypes.arrayOf(Produto.propTypes).isRequired,
-};

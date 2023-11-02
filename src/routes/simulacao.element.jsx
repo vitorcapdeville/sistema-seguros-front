@@ -1,7 +1,7 @@
-import { Form, useNavigate } from "react-router-dom";
+import { Form } from "react-router-dom";
+import Voltar from "./voltar.element";
 
 export default function Simulacao() {
-  const navigate = useNavigate();
   return (
     <div className="content-simulacao">
       <h2>Simulação de Seguro</h2>
@@ -19,23 +19,15 @@ export default function Simulacao() {
         <div className="form-group">
           <label htmlFor="sexo">Sexo</label>
           <select id="sexo" name="sexo">
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
           </select>
         </div>
 
         <button type="submit" id="simular" className="botao-simular">
           Simular
         </button>
-        <button
-          type="button"
-          className="botao-simular"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          Voltar
-        </button>
+        <Voltar />
       </Form>
     </div>
   );

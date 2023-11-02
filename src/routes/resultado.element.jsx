@@ -1,9 +1,9 @@
-import { Form, useLoaderData, useNavigate } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import Voltar from "./voltar.element";
 
 export default function Resultado() {
   const parametrosSimulacao = useLoaderData();
-  const navigate = useNavigate();
   const [prazo, setPrazo] = useState(parametrosSimulacao.prazos[0]);
 
   const handleChange = (e) => {
@@ -30,18 +30,10 @@ export default function Resultado() {
             <option>Falha ao buscar os prazos</option>
           )}
         </select>
-        <button type="submit" id="contratar" className="botao-simular">
+        <button type="submit" className="botao-simular">
           Contratar
         </button>
-        <button
-          type="button"
-          className="botao-simular"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          Voltar
-        </button>
+        <Voltar />
       </Form>
     </div>
   );
