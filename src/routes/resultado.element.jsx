@@ -1,13 +1,27 @@
 import { Form, useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import Navegar from "./navegar.element";
+import { pegarSimulacao } from "../produtos";
+
+const brl_formatter = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
 
 export default function Resultado() {
   const parametrosSimulacao = useLoaderData();
   const [prazo, setPrazo] = useState(parametrosSimulacao.prazos[0]);
+  const [premio, setPremio] = useState(parametrosSimulacao.premio);
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     setPrazo(e.target.value);
+    let simulacao = await pegarSimulacao(
+      parametrosSimulacao.dataNascimento,
+      parametrosSimulacao.sexo,
+      e.target.value,
+      parametrosSimulacao.produtoId
+    );
+    setPremio(simulacao.premio);
   };
 
   return (
@@ -19,7 +33,7 @@ export default function Resultado() {
         Simulado o produto {parametrosSimulacao.produtoId} para um cliente
         nascido em {parametrosSimulacao.dataNascimento} do sexo
         {parametrosSimulacao.sexo == "M" ? " masculino " : " feminino "}
-        por {prazo} anos.
+        por {prazo} anos com premio de {brl_formatter.format(premio)}.
       </p>
       <Form method="post" className="flex flex-col h-full w-full">
         <div className="flex space-x-4 mb-4">
