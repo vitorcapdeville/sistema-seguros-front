@@ -7,21 +7,22 @@ function Passo({ passoAtual, numero }) {
   return <span className="w-12 h-2 rounded-sm dark:bg-gray-600"></span>;
 }
 
+const pegarPassoAtual = (pathname) => {
+  if (pathname.includes("sucesso")) {
+    return 5;
+  } else if (pathname.includes("contratar")) {
+    return 4;
+  } else if (pathname.includes("resultado")) {
+    return 3;
+  } else if (pathname.includes("simular")) {
+    return 2;
+  }
+  return 1;
+};
+
 export default function Root() {
   const location = useLocation();
 
-  const pegarPassoAtual = (pathname) => {
-    if (pathname.includes("sucesso")) {
-      return 5;
-    } else if (pathname.includes("contratar")) {
-      return 4;
-    } else if (pathname.includes("resultado")) {
-      return 3;
-    } else if (pathname.includes("simular")) {
-      return 2;
-    }
-    return 1;
-  };
   const passoAtual = pegarPassoAtual(location.pathname);
 
   // indicador de passo atual e restantes baseado em https://mambaui.com/components/steps

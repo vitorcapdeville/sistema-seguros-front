@@ -24,17 +24,46 @@ export async function registrarCliente(dados) {
   return response.json();
 }
 
-export async function pegarPrazos(produtId) {
-  let prazos = await fetch(`${URL}/prazos?produto_id=${produtId}`)
+export async function pegarPrazos(produtoId) {
+  let prazos = await fetch(`${URL}/prazos?produto_id=${produtoId}`)
     .then((data) => data.json())
     .catch((err) => console.log(err));
   return prazos ?? [];
 }
 
-export async function pegarSimulacao(dataNascimento, sexo, prazo, produtoId) {
-  let simulacao = await fetch(
-    `${URL}/simular?data_nascimento=${dataNascimento}&sexo=${sexo}&prazo=${prazo}&produto_id=${produtoId}`
-  )
+export async function pegarPrazosRenda(produtoId) {
+  let prazos = await fetch(`${URL}/prazos_renda?produto_id=${produtoId}`)
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  return prazos ?? [];
+}
+
+export async function pegarFormula(produtoId) {
+  let formula = await fetch(`${URL}/formula?produto_id=${produtoId}`)
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  return formula ?? null;
+}
+
+export async function pegarSimulacao(
+  formula,
+  dataNascimento,
+  sexo,
+  prazo,
+  prazoRenda,
+  produtoId
+) {
+  let query_params = `data_nascimento=${dataNascimento}&sexo=${sexo}&prazo=${prazo}&produto_id=${produtoId}`;
+  switch (formula) {
+    case "peculio":
+      break;
+    case "aposentadoria":
+      query_params += `&prazo_renda=${prazoRenda.prazo_renda}&prazo_certo_renda=${prazoRenda.prazo_certo_renda}`;
+      break;
+    default:
+      throw new Error("Fórmula inválida");
+  }
+  let simulacao = await fetch(`${URL}/simular/${formula}?${query_params}`)
     .then((data) => data.json())
     .catch((err) => console.log(err));
   return simulacao ?? null;

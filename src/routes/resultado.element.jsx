@@ -11,14 +11,33 @@ const brl_formatter = new Intl.NumberFormat("pt-BR", {
 export default function Resultado() {
   const parametrosSimulacao = useLoaderData();
   const [prazo, setPrazo] = useState(parametrosSimulacao.prazos[0]);
+  const [prazoRenda, setPrazoRenda] = useState(
+    parametrosSimulacao.prazosRenda[0]
+  );
   const [premio, setPremio] = useState(parametrosSimulacao.premio);
 
-  const handleChange = async (e) => {
+  const handleChangePrazo = async (e) => {
     setPrazo(e.target.value);
     let simulacao = await pegarSimulacao(
+      parametrosSimulacao.formula,
       parametrosSimulacao.dataNascimento,
       parametrosSimulacao.sexo,
       e.target.value,
+      prazoRenda,
+      parametrosSimulacao.produtoId
+    );
+    setPremio(simulacao.premio);
+  };
+
+  const handleChangePrazoRenda = async (e) => {
+    let prazoRendaObj = JSON.parse(e.target.value);
+    setPrazoRenda(prazoRendaObj);
+    let simulacao = await pegarSimulacao(
+      parametrosSimulacao.formula,
+      parametrosSimulacao.dataNascimento,
+      parametrosSimulacao.sexo,
+      prazo,
+      prazoRendaObj,
       parametrosSimulacao.produtoId
     );
     setPremio(simulacao.premio);
@@ -30,34 +49,57 @@ export default function Resultado() {
         Personalize o seu produto
       </h2>
       <p className="text-center text-xl mb-4">
-        Simulado o produto {parametrosSimulacao.produtoId} para um cliente
-        nascido em {parametrosSimulacao.dataNascimento} do sexo
-        {parametrosSimulacao.sexo == "M" ? " masculino " : " feminino "}
-        por {prazo} anos com premio de {brl_formatter.format(premio)}.
+        Prêmio: {brl_formatter.format(premio)}.
       </p>
       <Form method="post" className="flex flex-col h-full w-full">
         <div className="flex space-x-4 mb-4">
           <div className="flex-grow">
-            <label htmlFor="prazo" className="label">
-              Alterar prazo do produto
-            </label>
-            <select
-              className="input focus:outline-none focus:bg-white"
-              id="prazo"
-              name="prazo"
-              onChange={handleChange}
-              value={prazo}
-            >
-              {parametrosSimulacao.prazos.length ? (
-                parametrosSimulacao.prazos.map((prazo) => (
-                  <option key={prazo} value={prazo}>
-                    {prazo} anos
-                  </option>
-                ))
-              ) : (
-                <option>Falha ao buscar os prazos</option>
-              )}
-            </select>
+            {parametrosSimulacao.prazos.length ? (
+              <>
+                <label htmlFor="prazo" className="label">
+                  Alterar prazo do produto
+                </label>
+                <select
+                  className="input focus:outline-none focus:bg-white"
+                  id="prazo"
+                  name="prazo"
+                  onChange={handleChangePrazo}
+                  value={prazo}
+                >
+                  {parametrosSimulacao.prazos.map((prazo) => (
+                    <option key={prazo} value={prazo}>
+                      {prazo} anos
+                    </option>
+                  ))}
+                </select>
+              </>
+            ) : null}
+            {parametrosSimulacao.prazosRenda.length ? (
+              <>
+                <label htmlFor="prazoRenda" className="label">
+                  Alterar prazo da renda
+                </label>
+                <select
+                  className="input focus:outline-none focus:bg-white"
+                  id="prazoRenda"
+                  name="prazoRenda"
+                  onChange={handleChangePrazoRenda}
+                  value={JSON.stringify(prazoRenda)}
+                >
+                  {parametrosSimulacao.prazosRenda.map((prazoRenda) => (
+                    <option
+                      key={
+                        prazoRenda.prazo_renda + prazoRenda.prazo_certo_renda
+                      }
+                      value={JSON.stringify(prazoRenda)}
+                    >
+                      {prazoRenda.prazo_renda} anos com{" "}
+                      {prazoRenda.prazo_certo_renda} anos de prazo certo
+                    </option>
+                  ))}
+                </select>
+              </>
+            ) : null}
           </div>
         </div>
         <div className="flex-grow"></div>
