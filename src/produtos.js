@@ -23,3 +23,19 @@ export async function registrarCliente(dados) {
 
   return response.json();
 }
+
+export async function pegarPrazos(produtId) {
+  let prazos = await fetch(`${URL}/prazos?produto_id=${produtId}`)
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  return prazos ?? [];
+}
+
+export async function pegarSimulacao(dataNascimento, sexo, prazo, produtoId) {
+  let simulacao = await fetch(
+    `${URL}/simular?data_nascimento=${dataNascimento}&sexo=${sexo}&prazo=${prazo}&produto_id=${produtoId}`
+  )
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  return simulacao ?? null;
+}
