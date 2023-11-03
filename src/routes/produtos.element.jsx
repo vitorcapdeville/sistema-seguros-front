@@ -13,7 +13,7 @@ const Produto = ({ id, nome, descricao }) => {
 
 export default function Produtos({ produtos }) {
   return (
-    <>
+    <div className="mx-4">
       <h2 className="text-2xl font-bold text-center mb-4">
         Escolha o seu produto
       </h2>
@@ -33,6 +33,6 @@ export default function Produtos({ produtos }) {
           </p>
         )}
       </div>
-    </>
+    </div>
   );
 }

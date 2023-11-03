@@ -7,7 +7,6 @@ function Voltar() {
     <>
       <button
         type="button"
-        className="botao-simular"
         onClick={() => {
           navigate(-1);
         }}

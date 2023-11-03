@@ -37,7 +37,7 @@ export default function Root() {
             <Passo passoAtual={passoAtual} numero={5} />
           </div>
         </div>
-        <div className="relative bg-white h-[50vh] w-[30vw] overflow-hidden">
+        <div className="parent bg-white h-[450px] w-[800px] overflow-hidden m-4">
           <Outlet />
         </div>
       </div>
