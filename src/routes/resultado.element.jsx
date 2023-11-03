@@ -1,6 +1,6 @@
 import { Form, useLoaderData } from "react-router-dom";
 import { useState } from "react";
-import Voltar from "./voltar.element";
+import Navegar from "./navegar.element";
 
 export default function Resultado() {
   const parametrosSimulacao = useLoaderData();
@@ -11,15 +11,26 @@ export default function Resultado() {
   };
 
   return (
-    <div className="content-simulacao">
-      <h2>Resultado da Simulação</h2>
-      <p>
+    <>
+      <h2 className="text-2xl font-bold text-center mb-4">
+        Personalize o seu produto
+      </h2>
+      <p className="text-center text-xl mb-4">
         Simulado o produto {parametrosSimulacao.produtoId} para um cliente
         nascido em {parametrosSimulacao.dataNascimento} do sexo{" "}
         {parametrosSimulacao.sexo} por {prazo} anos.
       </p>
       <Form method="post">
-        <select id="prazo" name="prazo" onChange={handleChange} value={prazo}>
+        <label htmlFor="prazo" className="label">
+          Alterar prazo do produto
+        </label>
+        <select
+          className="input focus:outline-none focus:bg-white"
+          id="prazo"
+          name="prazo"
+          onChange={handleChange}
+          value={prazo}
+        >
           {parametrosSimulacao.prazos.length ? (
             parametrosSimulacao.prazos.map((prazo) => (
               <option key={prazo} value={prazo}>
@@ -30,11 +41,8 @@ export default function Resultado() {
             <option>Falha ao buscar os prazos</option>
           )}
         </select>
-        <button type="submit" className="botao-simular">
-          Contratar
-        </button>
-        <Voltar />
+        <Navegar />
       </Form>
-    </div>
+    </>
   );
 }

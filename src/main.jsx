@@ -41,11 +41,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/contratar/sucesso",
-        element: <div>Contratação realizada com sucesso!</div>,
+        element: (
+          <h2 className="text-2xl font-bold text-center mb-4">
+            Contratação realizada com sucesso!
+          </h2>
+        ),
       },
       {
         path: "/contratar/falha",
-        element: <div>Contratação falhou!</div>,
+        element: (
+          <h2 className="text-2xl font-bold text-center mb-4">
+            Contratação falhou!
+          </h2>
+        ),
       },
     ],
   },

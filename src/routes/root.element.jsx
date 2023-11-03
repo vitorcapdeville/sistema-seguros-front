@@ -26,17 +26,21 @@ export default function Root() {
 
   // indicador de passo atual e restantes baseado em https://mambaui.com/components/steps
   return (
-    <>
-      <div className="p-4 space-y-2">
-        <div className="flex max-w-xs space-x-3">
-          <Passo passoAtual={passoAtual} numero={1} />
-          <Passo passoAtual={passoAtual} numero={2} />
-          <Passo passoAtual={passoAtual} numero={3} />
-          <Passo passoAtual={passoAtual} numero={4} />
-          <Passo passoAtual={passoAtual} numero={5} />
+    <div className="mx-auto flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="rounded-lg bg-white px-10 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5">
+        <div className="mx-auto flex items-center justify-center p-4">
+          <div className="flex max-w-xs space-x-3">
+            <Passo passoAtual={passoAtual} numero={1} />
+            <Passo passoAtual={passoAtual} numero={2} />
+            <Passo passoAtual={passoAtual} numero={3} />
+            <Passo passoAtual={passoAtual} numero={4} />
+            <Passo passoAtual={passoAtual} numero={5} />
+          </div>
+        </div>
+        <div className="relative bg-white h-[50vh] w-[30vw] overflow-hidden">
+          <Outlet />
         </div>
       </div>
-      <Outlet />
-    </>
+    </div>
   );
 }
