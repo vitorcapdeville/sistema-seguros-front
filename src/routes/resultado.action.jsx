@@ -4,7 +4,6 @@ export async function action({ request, params }) {
   const formData = await request.formData();
   const url = new URL(request.url);
   const parametrosSimulacao = Object.fromEntries(formData);
-  console.log(parametrosSimulacao.prazoRenda);
   let prazo = parametrosSimulacao.prazo;
   let prazoRenda =
     JSON.parse(parametrosSimulacao.prazoRenda ?? "{}").prazo_renda ?? null;

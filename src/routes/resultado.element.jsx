@@ -19,7 +19,6 @@ export default function Resultado() {
   const handleChangePrazo = async (e) => {
     setPrazo(e.target.value);
     let simulacao = await pegarSimulacao(
-      parametrosSimulacao.formula,
       parametrosSimulacao.dataNascimento,
       parametrosSimulacao.sexo,
       e.target.value,
@@ -33,7 +32,6 @@ export default function Resultado() {
     let prazoRendaObj = JSON.parse(e.target.value);
     setPrazoRenda(prazoRendaObj);
     let simulacao = await pegarSimulacao(
-      parametrosSimulacao.formula,
       parametrosSimulacao.dataNascimento,
       parametrosSimulacao.sexo,
       prazo,
@@ -88,13 +86,11 @@ export default function Resultado() {
                 >
                   {parametrosSimulacao.prazosRenda.map((prazoRenda) => (
                     <option
-                      key={
-                        prazoRenda.prazo_renda + prazoRenda.prazo_certo_renda
-                      }
+                      key={prazoRenda.prazo + prazoRenda.prazo_certo}
                       value={JSON.stringify(prazoRenda)}
                     >
-                      {prazoRenda.prazo_renda} anos com{" "}
-                      {prazoRenda.prazo_certo_renda} anos de prazo certo
+                      {prazoRenda.prazo} anos com {prazoRenda.prazo_certo} anos
+                      de prazo certo
                     </option>
                   ))}
                 </select>
