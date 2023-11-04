@@ -18,6 +18,7 @@ export default function Simulacao() {
               type="date"
               id="data-nascimento"
               name="dataNascimento"
+              defaultValue="1996-12-03"
               required
             />
           </div>

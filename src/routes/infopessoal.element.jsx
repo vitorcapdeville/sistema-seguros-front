@@ -17,6 +17,7 @@ export default function InfoPessoal() {
               type="text"
               id="cpf"
               name="cpf"
+              defaultValue="12345678900"
               required
               className="input focus:outline-none focus:bg-white"
             />
