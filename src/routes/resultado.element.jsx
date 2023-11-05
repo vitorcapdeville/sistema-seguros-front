@@ -80,17 +80,18 @@ function BeneficioInput({ value, edit, onEditSave, onChange }) {
             delimiter: ".",
           }}
         />
+        {/* 
+            TODO:
+            Como o input original fica desabilitado, preciso desse input oculto para enviar o valor no formulário
+            Acho que é hora de mover para redux-store ao inves de usar actions e loaders do react-router.
+            Idealmente eu deveria bloquear o avanço se ele estiver editando o input.
+            Acho que a melhor solução aqui seria um modal mesmo pra editar, nao tem jeito.
+        */}
+        <input type="hidden" name="beneficio" value={value} />
       </div>
-      {edit ? (
-        <button className="ml-3" onClick={onEditSave}>
-          {" "}
-          <AiOutlineCheckCircle />{" "}
-        </button>
-      ) : (
-        <button className="ml-3" onClick={onEditSave}>
-          <AiTwotoneEdit />
-        </button>
-      )}
+      <div className="ml-2 hover:cursor-pointer" onClick={onEditSave}>
+        {edit ? <AiOutlineCheckCircle /> : <AiTwotoneEdit />}
+      </div>
     </div>
   );
 }
