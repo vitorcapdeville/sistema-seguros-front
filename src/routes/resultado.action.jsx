@@ -4,6 +4,7 @@ export async function action({ request, params }) {
   const formData = await request.formData();
   const url = new URL(request.url);
   const parametrosSimulacao = Object.fromEntries(formData);
+  let beneficio = parametrosSimulacao.beneficio.replace(".", "");
   let prazo = parametrosSimulacao.prazo;
   let prazoRenda =
     JSON.parse(parametrosSimulacao.prazoRenda ?? "{}").prazo_renda ?? null;
@@ -14,6 +15,6 @@ export async function action({ request, params }) {
   let dataNascimento = url.searchParams.get("dataNascimento");
 
   return redirect(
-    `/simular/${params.produtoId}/contratar?dataNascimento=${dataNascimento}&sexo=${sexo}&prazo=${prazo}&prazoRenda=${prazoRenda}&prazoCertoRenda=${prazoCertRenda}`
+    `/simular/${params.produtoId}/contratar?beneficio=${beneficio}&dataNascimento=${dataNascimento}&sexo=${sexo}&prazo=${prazo}&prazoRenda=${prazoRenda}&prazoCertoRenda=${prazoCertRenda}`
   );
 }

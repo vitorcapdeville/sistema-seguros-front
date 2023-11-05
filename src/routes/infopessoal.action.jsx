@@ -6,6 +6,7 @@ export async function action({ request, params }) {
   const url = new URL(request.url);
   const parametrosSimulacao = Object.fromEntries(formData);
   parametrosSimulacao.produto_id = params.produtoId;
+  parametrosSimulacao.beneficio = url.searchParams.get("beneficio");
   parametrosSimulacao.data_nascimento = url.searchParams.get("dataNascimento");
   parametrosSimulacao.sexo = url.searchParams.get("sexo");
   parametrosSimulacao.prazo = url.searchParams.get("prazo");

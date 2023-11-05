@@ -10,7 +10,8 @@ export async function loader({ request, params }) {
     sexo,
     prazos[0],
     prazos_renda[0],
-    params.produtoId
+    params.produtoId,
+    5000
   );
   return {
     produtoId: params.produtoId,

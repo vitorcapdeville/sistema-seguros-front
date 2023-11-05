@@ -82,6 +82,7 @@ function BeneficioInput({ value, onChange }) {
           ref={beneficio}
           id="beneficio"
           className="input pl-9"
+          name="beneficio"
           value={value}
           onChange={onChange}
           options={{
@@ -104,9 +105,17 @@ export default function Resultado() {
   const [premio, setPremio] = useState(parametrosSimulacao.premio);
   const [beneficioValor, setBeneficioValor] = useState(5000);
 
-  const handleChangeBeneficio = (event) => {
-    let valor = event.target.rawValue;
-    setBeneficioValor(valor);
+  const handleChangeBeneficio = async (event) => {
+    setBeneficioValor(event.target.rawValue);
+    let simulacao = await pegarSimulacao(
+      parametrosSimulacao.dataNascimento,
+      parametrosSimulacao.sexo,
+      prazo,
+      prazoRenda,
+      parametrosSimulacao.produtoId,
+      event.target.rawValue
+    );
+    setPremio(simulacao.premio);
   };
 
   const handleChangePrazo = async (e) => {
@@ -116,7 +125,8 @@ export default function Resultado() {
       parametrosSimulacao.sexo,
       e.target.value,
       prazoRenda,
-      parametrosSimulacao.produtoId
+      parametrosSimulacao.produtoId,
+      beneficioValor
     );
     setPremio(simulacao.premio);
   };
@@ -129,7 +139,8 @@ export default function Resultado() {
       parametrosSimulacao.sexo,
       prazo,
       prazoRendaObj,
-      parametrosSimulacao.produtoId
+      parametrosSimulacao.produtoId,
+      beneficioValor
     );
     setPremio(simulacao.premio);
   };
