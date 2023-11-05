@@ -1,7 +1,8 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Navegar from "./navegar.element";
 import { pegarSimulacao } from "../produtos";
+import Cleave from "cleave.js/react";
 
 const brl_formatter = new Intl.NumberFormat("pt-BR", {
   style: "currency",
@@ -15,6 +16,21 @@ export default function Resultado() {
     parametrosSimulacao.prazosRenda[0]
   );
   const [premio, setPremio] = useState(parametrosSimulacao.premio);
+  const [beneficioValor, setBeneficioValor] = useState(5000);
+  const beneficio = useRef();
+
+  useEffect(() => {
+    new Cleave(beneficio.current, {
+      numeral: true,
+      numeralDecimalMark: ",",
+      delimiter: ".",
+    });
+  }, []);
+
+  const handleChangeBeneficio = (event) => {
+    let valor = event.target.rawValue;
+    setBeneficioValor(valor);
+  };
 
   const handleChangePrazo = async (e) => {
     setPrazo(e.target.value);
@@ -49,8 +65,33 @@ export default function Resultado() {
       <p className="text-center text-xl mb-4">
         Prêmio: {brl_formatter.format(premio)}.
       </p>
+      <p className="text-center text-xl mb-4">
+        Beneficio: {brl_formatter.format(beneficioValor)}
+      </p>
       <Form method="post" className="flex flex-col h-full w-full">
         <div className="flex space-x-4 mb-4">
+          <div className="flex-grow">
+            <label htmlFor="beneficio" className="label">
+              Alterar benefício
+            </label>
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <span className="text-gray-500 sm:text-sm">R$</span>
+              </div>
+              <Cleave
+                ref={beneficio}
+                id="beneficio"
+                className="input pl-9"
+                value={beneficioValor}
+                onChange={handleChangeBeneficio}
+                options={{
+                  numeral: true,
+                  numeralDecimalMark: ",",
+                  delimiter: ".",
+                }}
+              />
+            </div>
+          </div>
           <div className="flex-grow">
             {parametrosSimulacao.prazos.length ? (
               <>
