@@ -12,26 +12,25 @@ const Produto = ({ id, nome, descricao }) => {
 };
 
 export default function Produtos({ produtos }) {
+  if (produtos.length === 0) {
+    throw new Error(
+      "Nenhum produto disponível, talvez o servidor esteja fora do ar."
+    );
+  }
   return (
     <div className="mx-4">
       <h2 className="text-2xl font-bold text-center mb-4">
         Escolha o seu produto
       </h2>
       <div className="mt-5 grid grid-cols-3">
-        {produtos.length ? (
-          produtos.map((produto) => (
-            <Produto
-              key={produto.id}
-              id={produto.id}
-              nome={produto.nome}
-              descricao={produto.descricao}
-            />
-          ))
-        ) : (
-          <p>
-            <i>Nenhum produto disponível.</i>
-          </p>
-        )}
+        {produtos.map((produto) => (
+          <Produto
+            key={produto.id}
+            id={produto.id}
+            nome={produto.nome}
+            descricao={produto.descricao}
+          />
+        ))}
       </div>
     </div>
   );

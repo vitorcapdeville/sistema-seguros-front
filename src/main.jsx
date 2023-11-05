@@ -12,6 +12,7 @@ import { pegarProdutos } from "./produtos";
 import InfoPessoal from "./routes/infopessoal.element";
 import { action as infoPessoalAction } from "./routes/infopessoal.action";
 import Produtos from "./routes/produtos.element";
+import ErrorPage from "./routes/error.element";
 
 // TODO: Incluir paginas de erro.
 
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Produtos produtos={produtos} /> },
       {

@@ -4,10 +4,16 @@
 
 @layer components {
   .input {
-    @apply appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight;
+    @apply mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black;
   }
 
   .label {
-    @apply block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2
+    @apply block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2;
   }
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }

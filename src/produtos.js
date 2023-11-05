@@ -27,7 +27,9 @@ export async function registrarCliente(dados) {
 export async function pegarParametrosProduto(produtoId) {
   let parametros = await fetch(`${URL}/produtos/${produtoId}`)
     .then((data) => data.json())
-    .catch((err) => console.log(err));
+    .catch(() => {
+      throw new Error(`Falha na comunicação com a API`);
+    });
   return parametros;
 }
 
@@ -45,6 +47,8 @@ export async function pegarSimulacao(
 
   let simulacao = await fetch(`${URL}/simular?${query_params}`)
     .then((data) => data.json())
-    .catch((err) => console.log(err));
+    .catch(() => {
+      throw new Error(`Falha na comunicação com a API`);
+    });
   return simulacao ?? null;
 }
