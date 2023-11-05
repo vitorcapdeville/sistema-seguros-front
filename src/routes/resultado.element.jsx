@@ -1,5 +1,5 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Navegar from "./navegar.element";
 import { pegarSimulacao } from "../produtos";
 import Cleave from "cleave.js/react";
@@ -60,15 +60,6 @@ function PrazoInput({ prazos, value, onChange }) {
 }
 
 function BeneficioInput({ value, onChange }) {
-  const beneficio = useRef();
-  useEffect(() => {
-    new Cleave(beneficio.current, {
-      numeral: true,
-      numeralDecimalMark: ",",
-      delimiter: ".",
-    });
-  }, []);
-
   return (
     <>
       <label htmlFor="beneficio" className="label">
@@ -79,7 +70,6 @@ function BeneficioInput({ value, onChange }) {
           <span className="text-gray-500 sm:text-sm">R$</span>
         </div>
         <Cleave
-          ref={beneficio}
           id="beneficio"
           className="input pl-9"
           name="beneficio"
