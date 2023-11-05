@@ -41,7 +41,6 @@ export async function pegarSimulacao(
   produtoId,
   beneficio
 ) {
-  console.log(beneficio);
   let query_params = `beneficio=${beneficio}&data_nascimento=${dataNascimento}&sexo=${sexo}&prazo=${prazo}&produto_id=${produtoId}`;
   query_params += prazoRenda
     ? `&prazo_renda=${prazoRenda.prazo}&prazo_certo_renda=${prazoRenda.prazo_certo}`

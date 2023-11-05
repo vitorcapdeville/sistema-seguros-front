@@ -2,7 +2,6 @@ import { Form, useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import Navegar from "./navegar.element";
 import { pegarSimulacao } from "../produtos";
-import Cleave from "cleave.js/react";
 
 const brl_formatter = new Intl.NumberFormat("pt-BR", {
   style: "currency",
@@ -65,23 +64,16 @@ function BeneficioInput({ value, onChange }) {
       <label htmlFor="beneficio" className="label">
         Alterar benefício
       </label>
-      <div className="relative mt-2 rounded-md shadow-sm">
-        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-          <span className="text-gray-500 sm:text-sm">R$</span>
-        </div>
-        <Cleave
-          id="beneficio"
-          className="input pl-9"
-          name="beneficio"
-          value={value}
-          onChange={onChange}
-          options={{
-            numeral: true,
-            numeralDecimalMark: ",",
-            delimiter: ".",
-          }}
-        />
-      </div>
+      <input
+        id="beneficio"
+        type="range"
+        min="5000"
+        max="50000"
+        step="1000"
+        value={value}
+        onChange={onChange}
+        className="input"
+      />
     </>
   );
 }
@@ -96,14 +88,14 @@ export default function Resultado() {
   const [beneficioValor, setBeneficioValor] = useState(5000);
 
   const handleChangeBeneficio = async (event) => {
-    setBeneficioValor(event.target.rawValue);
+    setBeneficioValor(event.target.value);
     let simulacao = await pegarSimulacao(
       parametrosSimulacao.dataNascimento,
       parametrosSimulacao.sexo,
       prazo,
       prazoRenda,
       parametrosSimulacao.produtoId,
-      event.target.rawValue
+      event.target.value
     );
     setPremio(simulacao.premio);
   };
