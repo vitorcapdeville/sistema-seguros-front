@@ -181,7 +181,7 @@ export default function Resultado() {
           />
         ) : null}
         <div className="flex-grow"></div>
-        <Navegar />
+        <Navegar disabled={editandoBeneficio} />
       </Form>
     </div>
   );
