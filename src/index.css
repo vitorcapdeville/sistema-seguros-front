@@ -7,6 +7,14 @@
     @apply mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black;
   }
 
+  .input-disabled {
+    @apply mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 cursor-not-allowed bg-gray-100;
+  }
+
+  .input-invalid {
+    @apply mt-0 block w-full px-0.5 border-0 border-b-2 border-red-300 focus:ring-0 focus:border-red-500;
+  }
+
   .label {
     @apply block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2;
   }

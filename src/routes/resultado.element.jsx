@@ -56,7 +56,7 @@ function PrazoInput({ prazos, value, onChange }) {
   );
 }
 
-function BeneficioInput({ value, edit, onEditSave, onChange }) {
+function BeneficioInput({ value, edit, onEditSave, onChange, valido }) {
   return (
     <div className="flex mx-auto items-center">
       <p className="text-center w-56 text-xl mt-2 mr-2">Beneficio:</p>
@@ -67,8 +67,8 @@ function BeneficioInput({ value, edit, onEditSave, onChange }) {
         </div>
         <Cleave
           id="beneficio"
-          className={`input pl-8 ${
-            !edit ? "cursor-not-allowed bg-gray-100" : ""
+          className={`pl-8 ${
+            edit ? (valido ? "input" : "input-invalid") : "input-disabled"
           }`}
           name="beneficio"
           value={value}
@@ -89,9 +89,15 @@ function BeneficioInput({ value, edit, onEditSave, onChange }) {
         */}
         <input type="hidden" name="beneficio" value={value} />
       </div>
-      <div className="ml-2 hover:cursor-pointer" onClick={onEditSave}>
+      <button
+        className={`ml-2 ${
+          valido ? "hover:cursor-pointer" : "cursor-not-allowed"
+        }`}
+        onClick={onEditSave}
+        disabled={!valido}
+      >
         {edit ? <AiOutlineCheckCircle /> : <AiTwotoneEdit />}
-      </div>
+      </button>
     </div>
   );
 }
@@ -103,7 +109,9 @@ export default function Resultado() {
     parametrosSimulacao.prazosRenda[0]
   );
   const [premio, setPremio] = useState(parametrosSimulacao.premio);
-  const [beneficioValor, setBeneficioValor] = useState(5000);
+  const [beneficioValor, setBeneficioValor] = useState(
+    parametrosSimulacao.beneficioMinimo
+  );
   const [tempValor, setTempValor] = useState(beneficioValor);
   const [editandoBeneficio, setEditandoBeneficio] = useState(false);
 
@@ -126,6 +134,10 @@ export default function Resultado() {
     parametrosSimulacao.sexo,
     parametrosSimulacao.produtoId,
   ]);
+
+  const beneficioValido =
+    tempValor <= parametrosSimulacao.beneficioMaximo &&
+    tempValor >= parametrosSimulacao.beneficioMinimo;
 
   const handleEditBeneficio = async (event) => {
     event.preventDefault();
@@ -165,6 +177,7 @@ export default function Resultado() {
           onChange={handleBeneficioChange}
           onEditSave={handleEditBeneficio}
           edit={editandoBeneficio}
+          valido={beneficioValido}
         />
         {parametrosSimulacao.prazos.length ? (
           <PrazoInput
