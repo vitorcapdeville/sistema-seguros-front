@@ -12,7 +12,7 @@ const brl_formatter = new Intl.NumberFormat("pt-BR", {
 
 function PrazoRendaInput({ prazosRenda, value, onChange }) {
   return (
-    <div className="flex mx-auto">
+    <div className="flex mx-auto mt-2 mb-3">
       <p className="text-center w-56 text-xl mt-2 mr-2">Prazo da renda:</p>
       <select
         className="input w-80 focus:outline-none focus:bg-white"
@@ -37,7 +37,7 @@ function PrazoRendaInput({ prazosRenda, value, onChange }) {
 
 function PrazoInput({ prazos, value, onChange }) {
   return (
-    <div className="flex mx-auto items-center">
+    <div className="flex mx-auto items-center mt-1 mb-3">
       <p className="text-center w-56 text-xl mt-2 mr-2">Prazo:</p>
       <select
         className="input w-80 focus:outline-none focus:bg-white"
@@ -56,38 +56,47 @@ function PrazoInput({ prazos, value, onChange }) {
   );
 }
 
-function BeneficioInput({ value, edit, onEditSave, onChange, valido }) {
+function BeneficioInput({
+  value,
+  edit,
+  onEditSave,
+  onChange,
+  valido,
+  minimo,
+  maximo,
+}) {
   return (
     <div className="flex mx-auto items-center">
       <p className="text-center w-56 text-xl mt-2 mr-2">Beneficio:</p>
+      <div className="grid-rows-2">
+        <div className="relative rounded-md shadow-sm w-72">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
+            <span className="text-gray-500">R$</span>
+          </div>
+          <Cleave
+            id="beneficio"
+            className={`pl-8 ${
+              edit ? (valido ? "input" : "input-invalid") : "input-disabled"
+            }`}
+            name="beneficio"
+            value={value}
+            onChange={onChange}
+            disabled={!edit}
+            options={{
+              numeral: true,
+              numeralDecimalMark: ",",
+              delimiter: ".",
+            }}
+          />
 
-      <div className="relative rounded-md shadow-sm w-72">
-        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
-          <span className="text-gray-500">R$</span>
+          <input type="hidden" name="beneficio" value={value} />
         </div>
-        <Cleave
-          id="beneficio"
-          className={`pl-8 ${
-            edit ? (valido ? "input" : "input-invalid") : "input-disabled"
-          }`}
-          name="beneficio"
-          value={value}
-          onChange={onChange}
-          disabled={!edit}
-          options={{
-            numeral: true,
-            numeralDecimalMark: ",",
-            delimiter: ".",
-          }}
-        />
-        {/* 
-            TODO:
-            Como o input original fica desabilitado, preciso desse input oculto para enviar o valor no formulário
-            Acho que é hora de mover para redux-store ao inves de usar actions e loaders do react-router.
-            Idealmente eu deveria bloquear o avanço se ele estiver editando o input.
-            Acho que a melhor solução aqui seria um modal mesmo pra editar, nao tem jeito.
-        */}
-        <input type="hidden" name="beneficio" value={value} />
+
+        <p className={`text-red-500 text-xs ${valido ? "invisible" : ""}`}>
+          {`O benefício deve estar entre ${brl_formatter.format(
+            minimo
+          )} e ${brl_formatter.format(maximo)}`}
+        </p>
       </div>
       <button
         className={`ml-2 ${
@@ -178,6 +187,8 @@ export default function Resultado() {
           onEditSave={handleEditBeneficio}
           edit={editandoBeneficio}
           valido={beneficioValido}
+          minimo={parametrosSimulacao.beneficioMinimo}
+          maximo={parametrosSimulacao.beneficioMaximo}
         />
         {parametrosSimulacao.prazos.length ? (
           <PrazoInput
