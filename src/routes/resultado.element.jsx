@@ -121,7 +121,8 @@ export default function Resultado() {
   const [beneficioValor, setBeneficioValor] = useState(
     parametrosSimulacao.beneficioMinimo
   );
-  const [tempValor, setTempValor] = useState(beneficioValor);
+  const [beneficioValorTemporario, setBeneficioValorTemporario] =
+    useState(beneficioValor);
   const [editandoBeneficio, setEditandoBeneficio] = useState(false);
 
   useEffect(() => {
@@ -145,21 +146,19 @@ export default function Resultado() {
   ]);
 
   const beneficioValido =
-    tempValor <= parametrosSimulacao.beneficioMaximo &&
-    tempValor >= parametrosSimulacao.beneficioMinimo;
+    beneficioValorTemporario <= parametrosSimulacao.beneficioMaximo &&
+    beneficioValorTemporario >= parametrosSimulacao.beneficioMinimo;
 
   const handleEditBeneficio = async (event) => {
     event.preventDefault();
     if (editandoBeneficio) {
-      setBeneficioValor(tempValor);
-    } else {
-      setTempValor(beneficioValor);
+      setBeneficioValor(beneficioValorTemporario);
     }
     setEditandoBeneficio(!editandoBeneficio);
   };
 
   const handleBeneficioChange = (event) => {
-    setTempValor(event.target.rawValue);
+    setBeneficioValorTemporario(event.target.rawValue);
   };
 
   const handleChangePrazo = async (e) => {
