@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root.element";
 import Simulacao from "./routes/simulacao.element";
@@ -8,13 +7,13 @@ import { action as simulacaoAction } from "./routes/simulacao.action";
 import Resultado from "./routes/resultado.element";
 import { action as resultadoAction } from "./routes/resultado.action";
 import { loader as resultadoLoader } from "./routes/resultado.loader";
-import { pegarProdutos } from "./produtos";
 import InfoPessoal from "./routes/infopessoal.element";
 import { action as infoPessoalAction } from "./routes/infopessoal.action";
+import { loader as infoPessoalLoader } from "./routes/infopessoal.loader";
 import Produtos from "./routes/produtos.element";
 import ErrorPage from "./routes/error.element";
-
-// TODO: Incluir paginas de erro.
+import { pegarProdutos } from "./produtos";
+import "./index.css";
 
 const produtos = await pegarProdutos();
 
@@ -40,6 +39,7 @@ const router = createBrowserRouter([
         path: "/simular/:produtoId/contratar",
         element: <InfoPessoal />,
         action: infoPessoalAction,
+        loader: infoPessoalLoader,
       },
       {
         path: "/contratar/sucesso",

@@ -7,13 +7,11 @@ export async function action({ request, params }) {
   let beneficio = parametrosSimulacao.beneficio.replace(".", "");
   let prazo = parametrosSimulacao.prazo;
   let prazoRenda =
-    JSON.parse(parametrosSimulacao.prazoRenda ?? "{}").prazo_renda ?? null;
+    JSON.parse(parametrosSimulacao.prazoRenda ?? "{}").prazo ?? null;
   let prazoCertRenda =
-    JSON.parse(parametrosSimulacao.prazoRenda ?? "{}").prazo_certo_renda ??
-    null;
+    JSON.parse(parametrosSimulacao.prazoRenda ?? "{}").prazo_certo ?? null;
   let sexo = url.searchParams.get("sexo");
   let dataNascimento = url.searchParams.get("dataNascimento");
-
   return redirect(
     `/simular/${params.produtoId}/contratar?beneficio=${beneficio}&dataNascimento=${dataNascimento}&sexo=${sexo}&prazo=${prazo}&prazoRenda=${prazoRenda}&prazoCertoRenda=${prazoCertRenda}`
   );
