@@ -9,6 +9,8 @@ function Passo({ passoAtual, numero }) {
 
 const pegarPassoAtual = (pathname) => {
   if (pathname.includes("sucesso")) {
+    return 6;
+  } else if (pathname.includes("confirmar")) {
     return 5;
   } else if (pathname.includes("contratar")) {
     return 4;
@@ -36,6 +38,7 @@ export default function Root() {
             <Passo passoAtual={passoAtual} numero={3} />
             <Passo passoAtual={passoAtual} numero={4} />
             <Passo passoAtual={passoAtual} numero={5} />
+            <Passo passoAtual={passoAtual} numero={6} />
           </div>
         </div>
         <div className="parent bg-white h-[450px] w-[800px] overflow-hidden m-4">

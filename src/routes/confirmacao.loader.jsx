@@ -5,6 +5,9 @@ export async function loader({ request, params }) {
   const produto = await pegarProduto(params.produtoId);
   const parametros = {
     produto: produto.nome,
+    cpf: url.searchParams.get("cpf"),
+    nome: url.searchParams.get("nome"),
+    email: url.searchParams.get("email"),
     dataNascimento: url.searchParams.get("dataNascimento"),
     sexo: url.searchParams.get("sexo"),
     prazo: url.searchParams.get("prazo"),

@@ -1,4 +1,4 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form } from "react-router-dom";
 import Navegar from "./navegar.element";
 
 function InputComLabel({ label, id, defaultValue }) {
@@ -20,7 +20,6 @@ function InputComLabel({ label, id, defaultValue }) {
 }
 
 export default function InfoPessoal() {
-  const parametros = useLoaderData();
   return (
     <div className="child flex h-full w-full flex-col items-center">
       <h2 className="text-2xl font-bold text-center mb-4">
@@ -36,23 +35,6 @@ export default function InfoPessoal() {
             defaultValue="jsilva@email.com"
           />
         </div>
-        <h2 className="text-2xl font-bold text-center mb-4 mt-4">
-          Produto escolhido
-        </h2>
-        <ul>
-          <li>Produto: {parametros.produto}</li>
-          <li>Data Nascimento: {parametros.dataNascimento}</li>
-          <li>Sexo: {parametros.sexo}</li>
-          <li>Prazo: {parametros.prazo}</li>
-          {parametros.prazoRenda != "null" ? (
-            <>
-              <li>Prazo da renda: {parametros.prazoRenda}</li>
-              <li>Prazo certo da renda: {parametros.prazoCertoRenda}</li>
-            </>
-          ) : null}
-          <li>Benefício: {parametros.beneficio}</li>
-          <li>Prêmio: {parametros.premio}</li>
-        </ul>
 
         <div className="flex-grow"></div>
 

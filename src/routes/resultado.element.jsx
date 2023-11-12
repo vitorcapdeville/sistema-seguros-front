@@ -4,11 +4,7 @@ import Navegar from "./navegar.element";
 import { pegarSimulacao } from "../produtos";
 import { AiTwotoneEdit, AiOutlineCheckCircle } from "react-icons/ai";
 import Cleave from "cleave.js/react";
-
-const brl_formatter = new Intl.NumberFormat("pt-BR", {
-  style: "currency",
-  currency: "BRL",
-});
+import { FORMATAR_MOEDA } from "../brl_formatter";
 
 function PrazoRendaInput({ prazosRenda, value, onChange }) {
   return (
@@ -93,9 +89,9 @@ function BeneficioInput({
         </div>
 
         <p className={`text-red-500 text-xs ${valido ? "invisible" : ""}`}>
-          {`O benefício deve estar entre ${brl_formatter.format(
+          {`O benefício deve estar entre ${FORMATAR_MOEDA.format(
             minimo
-          )} e ${brl_formatter.format(maximo)}`}
+          )} e ${FORMATAR_MOEDA.format(maximo)}`}
         </p>
       </div>
       <button
@@ -176,7 +172,7 @@ export default function Resultado() {
         Personalize o seu produto
       </h2>
       <p className="text-center text-xl mb-4">
-        Prêmio: {brl_formatter.format(premio)}
+        Prêmio: {FORMATAR_MOEDA.format(premio)}
       </p>
       <hr className="w-full mb-4" />
       <Form method="post" className="flex flex-col h-full w-full">
