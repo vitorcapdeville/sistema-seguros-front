@@ -120,6 +120,11 @@ export default function Resultado() {
   const [beneficioValorTemporario, setBeneficioValorTemporario] =
     useState(beneficioValor);
   const [editandoBeneficio, setEditandoBeneficio] = useState(false);
+  const [error, setError] = useState(null);
+
+  if (error) {
+    throw error;
+  }
 
   useEffect(() => {
     pegarSimulacao(
@@ -129,9 +134,13 @@ export default function Resultado() {
       prazoRenda,
       parametrosSimulacao.produtoId,
       beneficioValor
-    ).then((simulacao) => {
-      setPremio(simulacao.premio);
-    });
+    )
+      .then((simulacao) => {
+        setPremio(simulacao.premio);
+      })
+      .catch((error) => {
+        setError(error);
+      });
   }, [
     prazo,
     prazoRenda,
