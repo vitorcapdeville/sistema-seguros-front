@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       {
         path: "/contratar/falha",
         element: (
-          <h2 className="text-2xl font-bold text-center mb-4">
+          <h2 className="text-2xl font-bold text-center mb-4 text-red-400">
             Contratação falhou!
           </h2>
         ),

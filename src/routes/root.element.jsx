@@ -1,14 +1,15 @@
 import { Outlet, useLocation } from "react-router-dom";
 
-function Passo({ passoAtual, numero }) {
+function Passo({ passoAtual, numero, falha = false }) {
+  const cor = falha ? "bg-red-400" : "bg-green-400";
   if (numero <= passoAtual) {
-    return <span className="w-12 h-2 rounded-sm dark:bg-green-400"></span>;
+    return <span className={`w-12 h-2 rounded-sm ${cor}`}></span>;
   }
-  return <span className="w-12 h-2 rounded-sm dark:bg-gray-600"></span>;
+  return <span className="w-12 h-2 rounded-sm bg-gray-600"></span>;
 }
 
 const pegarPassoAtual = (pathname) => {
-  if (pathname.includes("sucesso")) {
+  if (pathname.includes("sucesso") || pathname.includes("falha")) {
     return 6;
   } else if (pathname.includes("confirmar")) {
     return 5;
@@ -26,6 +27,7 @@ export default function Root() {
   const location = useLocation();
 
   const passoAtual = pegarPassoAtual(location.pathname);
+  const falha = location.pathname.includes("falha");
 
   // indicador de passo atual e restantes baseado em https://mambaui.com/components/steps
   return (
@@ -38,7 +40,7 @@ export default function Root() {
             <Passo passoAtual={passoAtual} numero={3} />
             <Passo passoAtual={passoAtual} numero={4} />
             <Passo passoAtual={passoAtual} numero={5} />
-            <Passo passoAtual={passoAtual} numero={6} />
+            <Passo passoAtual={passoAtual} numero={6} falha={falha} />
           </div>
         </div>
         <div className="parent bg-white h-[450px] w-[800px] overflow-hidden m-4">
