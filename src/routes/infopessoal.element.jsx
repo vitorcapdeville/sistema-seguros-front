@@ -1,23 +1,6 @@
 import { Form } from "react-router-dom";
 import Navegar from "./navegar.element";
-
-function InputComLabel({ label, id, defaultValue }) {
-  return (
-    <div>
-      <label htmlFor="cpf" className="label">
-        {label}:
-      </label>
-      <input
-        type="text"
-        id={id}
-        name={id}
-        defaultValue={defaultValue}
-        required
-        className="input focus:outline-none focus:bg-white"
-      />
-    </div>
-  );
-}
+import { InputComLabel } from "./input.element";
 
 export default function InfoPessoal() {
   return (
@@ -26,10 +9,11 @@ export default function InfoPessoal() {
         Mais algumas informações pessoais
       </h2>
       <Form method="post" className="flex flex-col h-full w-full">
-        <div className="grid grid-cols-3 gap-x-4 gap-y-2">
+        <div className="w-[50%] self-center">
           <InputComLabel label="CPF" id="cpf" defaultValue="12345678900" />
           <InputComLabel label="Nome" id="nome" defaultValue="Jose da Silva" />
           <InputComLabel
+            type="email"
             label="E-mail"
             id="email"
             defaultValue="jsilva@email.com"

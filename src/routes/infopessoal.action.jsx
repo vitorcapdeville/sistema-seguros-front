@@ -7,6 +7,5 @@ export async function action({ request, params }) {
   url.searchParams.set("cpf", parametrosSimulacao.cpf);
   url.searchParams.set("nome", parametrosSimulacao.nome);
   url.searchParams.set("email", parametrosSimulacao.email);
-  console.log(url);
   return redirect(`/contratar/${params.produtoId}/confirmar` + url.search);
 }

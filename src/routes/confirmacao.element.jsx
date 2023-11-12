@@ -1,6 +1,6 @@
 import { Form, useLoaderData } from "react-router-dom";
 import { FORMATAR_MOEDA } from "../brl_formatter";
-import Navegar from "./navegar.element";
+import { Voltar } from "./navegar.element";
 
 const formatarData = (data) => {
   const [ano, mes, dia] = data.split("-");
@@ -88,7 +88,15 @@ export default function Confirmacao() {
       </p>
       <Form method="post" className="flex flex-col h-full w-full">
         <div className="flex-grow"></div>
-        <Navegar />
+        <div className="flex justify-between px-2 mt-4">
+          <Voltar disabled={false} />
+          <button
+            type="submit"
+            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          >
+            Contratar!
+          </button>
+        </div>
       </Form>
     </div>
   );

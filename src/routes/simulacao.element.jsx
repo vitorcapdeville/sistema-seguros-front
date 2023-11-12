@@ -1,5 +1,6 @@
 import { Form } from "react-router-dom";
 import Navegar from "./navegar.element";
+import { InputComLabel, SelectComLabel } from "./input.element";
 
 export default function Simulacao() {
   return (
@@ -8,34 +9,21 @@ export default function Simulacao() {
         Informações pessoais
       </h2>
       <Form method="post" className="flex flex-col h-full w-full">
-        <div className="flex space-x-4 mb-4">
-          <div className="flex-grow">
-            <label htmlFor="data-nascimento" className="label">
-              Data de Nascimento
-            </label>
-            <input
-              className="input focus:outline-none focus:bg-white"
-              type="date"
-              id="data-nascimento"
-              name="dataNascimento"
-              defaultValue="1996-12-03"
-              required
-            />
-          </div>
-
-          <div className="flex-grow">
-            <label htmlFor="sexo" className="label">
-              Sexo
-            </label>
-            <select
-              id="sexo"
-              name="sexo"
-              className="input focus:outline-none focus:bg-white"
-            >
-              <option value="M">Masculino</option>
-              <option value="F">Feminino</option>
-            </select>
-          </div>
+        <div className="w-[50%] self-center">
+          <InputComLabel
+            label="Data de nascimento"
+            id="dataNascimento"
+            type="date"
+            defaultValue="1996-12-03"
+          />
+          <SelectComLabel
+            label="Sexo"
+            id="sexo"
+            choices={[
+              { label: "Masculino", value: "M" },
+              { label: "Feminino", value: "F" },
+            ]}
+          />
         </div>
         <div className="flex-grow"></div>
         <Navegar />
