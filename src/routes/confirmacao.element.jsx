@@ -15,6 +15,7 @@ export default function Confirmacao() {
       <h2 className="text-2xl font-bold text-center mb-4">
         Confirme as opções escolhidas
       </h2>
+      <hr className="w-full"></hr>
       <table className="w-[50%] self-center mt-4 mb-4">
         <tbody>
           <tr>
@@ -56,7 +57,7 @@ export default function Confirmacao() {
           <tr>
             <td></td>
             <td>Prazo</td>
-            <td>{parametros.prazo}</td>
+            <td>{parametros.prazo} anos</td>
             <td></td>
           </tr>
           {parametros.prazoRenda != "null" ? (
@@ -64,13 +65,13 @@ export default function Confirmacao() {
               <tr>
                 <td></td>
                 <td>Prazo da renda</td>
-                <td>{parametros.prazoRenda}</td>
+                <td>{parametros.prazoRenda} anos</td>
                 <td></td>
               </tr>
               <tr>
                 <td></td>
                 <td>Prazo certo da renda</td>
-                <td>{parametros.prazoCertoRenda}</td>
+                <td>{parametros.prazoCertoRenda} anos</td>
                 <td></td>
               </tr>
             </>
@@ -83,6 +84,7 @@ export default function Confirmacao() {
           </tr>
         </tbody>
       </table>
+      <hr className="w-full"></hr>
       <p className="mt-2 text-2xl text-center">
         Prêmio: {FORMATAR_MOEDA.format(parametros.premio)}
       </p>
