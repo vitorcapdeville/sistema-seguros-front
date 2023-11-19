@@ -17,12 +17,15 @@ export default function Produtos({ produtos }) {
       "Nenhum produto disponível, talvez o servidor esteja fora do ar."
     );
   }
+  console.log(Math.ceil(Math.sqrt(produtos.length)));
   return (
     <div className="mx-4">
       <h2 className="text-2xl font-bold text-center mb-4">
         Escolha o seu produto
       </h2>
-      <ul className="mt-5 grid grid-cols-3">
+      <ul
+        className={`mt-5 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-4`}
+      >
         {produtos.map((produto) => (
           <Produto
             key={produto.id}
