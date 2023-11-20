@@ -17,7 +17,6 @@ export async function action({ request, params }) {
   parametrosSimulacao.prazo_certo_renda =
     url.searchParams.get("prazoCertoRenda");
   parametrosSimulacao.data_assinatura = new Date().toISOString().split("T")[0];
-  console.log(parametrosSimulacao);
   try {
     await registrarCliente(parametrosSimulacao);
   } catch (e) {

@@ -8,10 +8,12 @@ import { FORMATAR_MOEDA } from "../brl_formatter";
 
 function PrazoRendaInput({ prazosRenda, value, onChange }) {
   return (
-    <div className="flex mx-auto mt-2 mb-3">
-      <p className="text-center w-56 text-xl mt-2 mr-2">Prazo da renda:</p>
+    <>
+      <p className="text-center w-56 text-xl mt-2 mr-2  col-span-2">
+        Prazo da renda:
+      </p>
       <select
-        className="input w-80 focus:outline-none focus:bg-white"
+        className="input focus:outline-none focus:bg-white col-span-4"
         id="prazoRenda"
         name="prazoRenda"
         onChange={onChange}
@@ -27,16 +29,16 @@ function PrazoRendaInput({ prazosRenda, value, onChange }) {
           </option>
         ))}
       </select>
-    </div>
+    </>
   );
 }
 
 function PrazoInput({ prazos, value, onChange }) {
   return (
-    <div className="flex mx-auto items-center mt-1 mb-3">
-      <p className="text-center w-56 text-xl mt-2 mr-2">Prazo:</p>
+    <>
+      <p className="text-center w-56 text-xl mt-2 mr-2  col-span-2">Prazo:</p>
       <select
-        className="input w-80 focus:outline-none focus:bg-white"
+        className="input focus:outline-none focus:bg-white col-span-4"
         id="prazo"
         name="prazo"
         onChange={onChange}
@@ -48,7 +50,7 @@ function PrazoInput({ prazos, value, onChange }) {
           </option>
         ))}
       </select>
-    </div>
+    </>
   );
 }
 
@@ -62,10 +64,12 @@ function BeneficioInput({
   maximo,
 }) {
   return (
-    <div className="flex mx-auto items-center">
-      <p className="text-center w-56 text-xl mt-2 mr-2">Beneficio:</p>
-      <div className="grid-rows-2">
-        <div className="relative rounded-md shadow-sm w-72">
+    <>
+      <p className="text-center w-56 text-xl mt-2 mr-2 col-span-2">
+        Beneficio:
+      </p>
+      <div className="grid-rows-2 col-span-3">
+        <div className="relative rounded-md shadow-sm">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
             <span className="text-gray-500">R$</span>
           </div>
@@ -103,7 +107,7 @@ function BeneficioInput({
       >
         {edit ? <AiOutlineCheckCircle /> : <AiTwotoneEdit />}
       </button>
-    </div>
+    </>
   );
 }
 
@@ -185,29 +189,32 @@ export default function Resultado() {
       </p>
       <hr className="w-full mb-4" />
       <Form method="post" className="flex flex-col h-full w-full">
-        <BeneficioInput
-          value={beneficioValor}
-          onChange={handleBeneficioChange}
-          onEditSave={handleEditBeneficio}
-          edit={editandoBeneficio}
-          valido={beneficioValido}
-          minimo={parametrosSimulacao.beneficioMinimo}
-          maximo={parametrosSimulacao.beneficioMaximo}
-        />
-        {parametrosSimulacao.prazos.length ? (
-          <PrazoInput
-            prazos={parametrosSimulacao.prazos}
-            value={prazo}
-            onChange={handleChangePrazo}
+        <div className="grid grid-cols-6 w-[100%] max-w-[28rem] min-w-[28rem] self-center justify-items-center">
+          <BeneficioInput
+            value={beneficioValor}
+            onChange={handleBeneficioChange}
+            onEditSave={handleEditBeneficio}
+            edit={editandoBeneficio}
+            valido={beneficioValido}
+            minimo={parametrosSimulacao.beneficioMinimo}
+            maximo={parametrosSimulacao.beneficioMaximo}
           />
-        ) : null}
-        {parametrosSimulacao.prazosRenda.length ? (
-          <PrazoRendaInput
-            prazosRenda={parametrosSimulacao.prazosRenda}
-            value={prazoRenda}
-            onChange={handleChangePrazoRenda}
-          />
-        ) : null}
+          {parametrosSimulacao.prazos.length ? (
+            <PrazoInput
+              prazos={parametrosSimulacao.prazos}
+              value={prazo}
+              onChange={handleChangePrazo}
+            />
+          ) : null}
+          {parametrosSimulacao.prazosRenda.length ? (
+            <PrazoRendaInput
+              prazosRenda={parametrosSimulacao.prazosRenda}
+              value={prazoRenda}
+              onChange={handleChangePrazoRenda}
+            />
+          ) : null}
+        </div>
+
         <div className="flex-grow"></div>
         <Navegar disabled={editandoBeneficio} />
       </Form>

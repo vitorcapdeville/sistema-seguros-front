@@ -4,12 +4,12 @@ import { InputComLabel, SelectComLabel } from "./input.element";
 
 export default function Simulacao() {
   return (
-    <div className="child flex h-full w-full flex-col items-center">
+    <div className="child flex h-full flex-col items-center">
       <h2 className="text-2xl font-bold text-center mb-4">
         Informações pessoais
       </h2>
       <Form method="post" className="flex flex-col h-full w-full">
-        <div className="w-[50%] self-center">
+        <div className="w-[100%] max-w-xs self-center">
           <InputComLabel
             label="Data de nascimento"
             id="dataNascimento"

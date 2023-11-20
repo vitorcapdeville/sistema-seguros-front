@@ -9,7 +9,7 @@ export default function InfoPessoal() {
         Mais algumas informações pessoais
       </h2>
       <Form method="post" className="flex flex-col h-full w-full">
-        <div className="w-[50%] self-center">
+        <div className="w-[100%] max-w-xs self-center">
           <InputComLabel label="CPF" id="cpf" defaultValue="12345678900" />
           <InputComLabel label="Nome" id="nome" defaultValue="Jose da Silva" />
           <InputComLabel
