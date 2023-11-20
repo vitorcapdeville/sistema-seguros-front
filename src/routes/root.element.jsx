@@ -31,9 +31,9 @@ export default function Root() {
 
   // indicador de passo atual e restantes baseado em https://mambaui.com/components/steps
   return (
-    <div className="overflow-auto min-w-[700px]">
+    <div className="overflow-auto min-w-[600px]">
       <div className="flex flex-col pt-8 pb-8 h-[100vh] items-center justify-center bg-gray-50">
-        <div className="rounded-lg bg-white px-10 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 max-w-[1000px] w-[90vw] flex flex-col flex-grow">
+        <div className="rounded-lg bg-white px-10 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 max-w-[1000px] w-[90vw] min-w-[33rem] flex flex-col flex-grow">
           <div className="mx-auto flex items-center justify-center p-4">
             <div className="flex max-w-xs space-x-3">
               <Passo passoAtual={passoAtual} numero={1} />
