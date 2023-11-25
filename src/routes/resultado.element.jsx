@@ -92,7 +92,7 @@ function BeneficioInput({
           <input type="hidden" name="beneficio" value={value} />
         </div>
 
-        <p className={`text-red-500 text-xs ${valido ? "invisible" : ""}`}>
+        <p className={`text-red-500 text-xs ${valido ? "hidden" : "block"}`}>
           {`O benefício deve estar entre ${FORMATAR_MOEDA.format(
             minimo
           )} e ${FORMATAR_MOEDA.format(maximo)}`}
@@ -189,7 +189,7 @@ export default function Resultado() {
       </p>
       <hr className="w-full mb-4" />
       <Form method="post" className="flex flex-col h-full w-full">
-        <div className="grid grid-cols-6 w-[100%] max-w-[28rem] min-w-[28rem] self-center justify-items-center">
+        <div className="grid grid-cols-6 gap-y-4 w-[100%] max-w-[28rem] min-w-[28rem] self-center justify-items-center">
           <BeneficioInput
             value={beneficioValor}
             onChange={handleBeneficioChange}
