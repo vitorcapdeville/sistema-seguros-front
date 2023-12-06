@@ -1,16 +1,25 @@
-## TODO
+# Sistema seguros
 
-Eu estou usando 3 rotas get para pegar prazo, prazoRenda e formula. Eu sempre uso as 3 juntas.
-Faria mais sentido criar uma rota "pegarParametrosProduto" e trazer as 3 informações juntas?
+O sistema de seguros é um aplicativo web para gerenciamento de seguros de vida. O front end foi construído utilizando react, react-router e tailwind-css. Ele é composto por um esquema de simulação e contratação em etapas, onde o usuário primeiro escolhe o produto que deseja simular, então preenche algumas informações pessoais genéricas que não o identificam, e recebe já um feedback do preço do seguro, com a possibilidade de ajustar parâmetros associados ao seguro escolhido e obter uma atualização instântanea do preço. Os parâmetros exibidos variam de acordo com o produto escolhido, assim como as opções para esses parâmetros, e os valores são controlados pelo back-end. Após a simulação, o usuário pode prosseguir para a contratação, onde preenche informações pessoais mais específicas, como nome, cpf, etc. e então é redirecionado para uma tela de confirmação onde pode revisar todas as informações inseridas nas etapas anteriores e concluir a contratação.
 
-Com relação as fórmulas:
-eu tenho diferentes fórmulas de calculo para diferentes produtos.
-Eu criei rotas específicas na API, e uma função genérica no javascript, que recebe o nome da formula
-e decide qual rota chamar.
+---
 
-Seria mais adequado criar uma rota genérica direto na API e chamar essa rota genérica com todos os parametros possíveis?
-Acho que não pq a documentação ficaria menos clara, e eu ainda teria que verificar quais inputs mostrar ou nao no front-end.
+## Como executar
 
-Mas ficaria confusa para o usuário externo. Se a rota sempre é chamada com as infos do banco de dados, o banco
-de dados vai definir quais parametros estarao disponiveis para cada tipo de produto. Por ex, se um produto nao é de renda,
-entao quando tentarmos trazer o prazo de renda vai vir como null, e isso pode ser passado se eu usar a rota genérica.
+Esse projeto requer uma instalação do Node.js. É possível obter o instalador [aqui](https://nodejs.org/en/download).
+
+Além disso, é necessário instalar as dependências do projeto.
+Para isso, execute os seguintes comandos:
+
+```bash
+npm install
+```
+
+Com as dependências instaladas, é possível executar o projeto:
+
+```bash
+npm run dev
+```
+Para executar o back-end, abra um novo terminal e siga [essas instruções](https://github.com/vitorcapdeville/sistema-seguros-back#como-executar)
+
+Esse projeto foi construído utilizando react, react-router, tailwind-css e vite.js.
