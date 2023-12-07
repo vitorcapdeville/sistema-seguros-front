@@ -48,12 +48,22 @@ export async function pegarSimulacao(
   produtoId,
   beneficio
 ) {
-  let query_params = `beneficio=${beneficio}&data_nascimento=${dataNascimento}&sexo=${sexo}&prazo=${prazo}&produto_id=${produtoId}`;
-  query_params += prazoRenda
-    ? `&prazo_renda=${prazoRenda.prazo}&prazo_certo_renda=${prazoRenda.prazo_certo}`
-    : "";
+  const formData = new FormData();
+  formData.append("data_nascimento", dataNascimento)
+  formData.append("sexo", sexo)
+  formData.append("prazo", prazo)
+  if (prazoRenda) {
+    formData.append("prazo_renda", prazoRenda.prazo)
+    formData.append("prazo_certo_renda", prazoRenda.prazo_certo)
+  }
+  formData.append("produto_id", produtoId)
+  formData.append("beneficio", beneficio)
+  
 
-  let simulacao = await fetch(`${URL}/simular?${query_params}`)
+  let simulacao = await fetch(`${URL}/simular`, {
+    method: "post",
+    body: formData,
+  })
     .then((data) => data.json())
     .catch(() => {
       throw new Error(`Falha na comunicação com a API`);
