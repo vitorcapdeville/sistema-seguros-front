@@ -1,6 +1,15 @@
 # Sistema seguros
 
-O sistema de seguros é um aplicativo web para gerenciamento de seguros de vida. O front end foi construído utilizando react, react-router e tailwind-css. Ele é composto por um esquema de simulação e contratação em etapas, onde o usuário primeiro escolhe o produto que deseja simular, então preenche algumas informações pessoais genéricas que não o identificam, e recebe já um feedback do preço do seguro, com a possibilidade de ajustar parâmetros associados ao seguro escolhido e obter uma atualização instântanea do preço. Os parâmetros exibidos variam de acordo com o produto escolhido, assim como as opções para esses parâmetros, e os valores são controlados pelo back-end. Após a simulação, o usuário pode prosseguir para a contratação, onde preenche informações pessoais mais específicas, como nome, cpf, etc. e então é redirecionado para uma tela de confirmação onde pode revisar todas as informações inseridas nas etapas anteriores e concluir a contratação.
+O sistema de seguros é um aplicativo web para gerenciamento de seguros de vida. 
+
+O front-end é composto por um esquema de simulação e contratação em etapas.
+Na primeira etapa, o usuário escolhe o produto que deseja simular, e em seguida preenche algumas informações pessoais genéricas que não o identificam.
+
+O usuário então recebe um feedback do preço do seguro, com possibilidade de alterar alguns parâmetros do produto. A alteração desses parâmetros geram um novo preço, que é exibido de forma imediata.
+Os parâmetros exibidos variam de acordo com o produto escolhido, assim como as opções para esses parâmetros, e os valores são controlados pelo back-end. 
+
+Após a simulação, o usuário pode prosseguir para a contratação, onde preenche informações pessoais mais específicas, como nome, cpf, etc. 
+A última etapa exibe uma tela de confirmação onde o usuário pode revisar todas as informações inseridas nas etapas anteriores e concluir a contratação.
 
 ---
 
